@@ -23,6 +23,7 @@ default: &default
   host: localhost
   username: ill
   password: nanana
+  
 development:
   <<: *default
   database: sample_app_development
