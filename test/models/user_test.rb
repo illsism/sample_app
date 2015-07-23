@@ -54,9 +54,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
   test "email adress should be downcase" do
-    @user.email="lalalaAAAAAala@CSSAS.cOM"
-    @user.email.downcase!
-    assert @user.valid?
+    mixed_case_email="lalalaAAAAAala@CSSAS.cOM"
+    @user.email=mixed_case_email
+    @user.save
+    assert_equal mixed_case_email.downcase, @user.reload.email
   end
   test "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = " " * 6
